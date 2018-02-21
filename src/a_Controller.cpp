@@ -24,6 +24,7 @@ Controller::Controller(USB *p)
 	XPress = 0;
 	BPress = 0;
 	StartButton = 0;
+	XBoxClick = -1;
 }
 
 void Controller::Task()
@@ -46,7 +47,7 @@ void Controller::Task()
 	DPadLeftRight = 0;
 	DPadLeftRightClick = 0;
 	StartButton = 0;
-	XBoxClick = 0;
+	//XBoxClick = 0;
 	BackClick = 0;
 
 	//This is where you update controller items.
@@ -62,25 +63,35 @@ void Controller::Task()
 
 
 
-				if (Xbox.getAnalogHat(LeftHatY, i) > joystickMinThresh || Xbox.getAnalogHat(LeftHatY, i) < -joystickMinThresh)
-				{
-					LeftJoystickY = 400.0 / 32767 * Xbox.getAnalogHat(LeftHatY, i);
-				}
-
 				if (Xbox.getAnalogHat(LeftHatX, i) > joystickMinThresh || Xbox.getAnalogHat(LeftHatX, i) < -joystickMinThresh)
 				{
 					LeftJoystickX = 400.0 / 32767 * Xbox.getAnalogHat(LeftHatX, i);
 				}
 
-
-				if (Xbox.getAnalogHat(RightHatY, i) > joystickMinThresh || Xbox.getAnalogHat(RightHatY, i) < -joystickMinThresh)
+				if (Xbox.getAnalogHat(LeftHatY, i) > joystickMinThresh)
 				{
-					RightJoystickY = 400.0 / 32767 * Xbox.getAnalogHat(RightHatY, i);
+					LeftJoystickY = map(Xbox.getAnalogHat(LeftHatY, i),5500,32767,183,400);
+				}
+				else if(Xbox.getAnalogHat(LeftHatY, i) < -joystickMinThresh)
+				{
+					LeftJoystickY = map(Xbox.getAnalogHat(LeftHatY, i),-5500,-32767,-183,-400);
+				}
+
+
+
+				if (Xbox.getAnalogHat(RightHatY, i) > joystickMinThresh)
+				{
+					RightJoystickY = map(Xbox.getAnalogHat(RightHatY, i), 5500,32767,183,400);
+				}
+				else if(Xbox.getAnalogHat(RightHatY, i) < -joystickMinThresh)
+				{
+					RightJoystickY = map(Xbox.getAnalogHat(RightHatY, i), -5500,-32767,-183,-400);
 				}
 
 				if (Xbox.getAnalogHat(RightHatX, i) > joystickMinThresh || Xbox.getAnalogHat(RightHatX, i) < -joystickMinThresh)
 				{
 					RightJoystickX = 400.0 / 32767 * Xbox.getAnalogHat(RightHatX, i);
+				
 				}
 
 				//L2 Trigger
@@ -177,7 +188,17 @@ void Controller::Task()
 
 				if (Xbox.getButtonClick(XBOX, i))
 				{
-					XBoxClick = 1;
+					if(XBoxClick == -1)
+						XBoxClick = 0;
+					else
+						XBoxClick = 1;
+				}
+				else
+				{
+					if(XBoxClick != -1)
+					{
+						XBoxClick = 0;
+					}
 				}
 
 				if (Xbox.getButtonClick(BACK, i))

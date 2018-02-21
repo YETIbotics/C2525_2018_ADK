@@ -48,7 +48,7 @@ void loop()
     //Task the USB every loop.
 	robot.TaskUSB();
 }
-
+bool isFirst = true;
 
 void runRobot()
 {
@@ -62,7 +62,20 @@ void runRobot()
 
 	controller.Task();
 
-	robot.Write();
+	if(controller.XBoxClick != -1)
+	{
+
+		robot.Write();
+		if(isFirst)
+		{
+
+			isFirst = false;
+			robot.IsDeployed = true;
+			delay(500);
+			secondLift.YPos = 2;
+		}
+	}
+	
 	//cv.Task();
 
 	autonomous.Task();
@@ -92,7 +105,7 @@ void MapRobot()
 	chainbar.DPadLeftRight = controller.DPadLeftRightClick;
 	chainbar.HatButton = controller.YClick;
 
-	if (controller.XBoxClick)
+	if (controller.XBoxClick == 1)
 	{
 		autonomous.StartAutonomous(1, millis());
 	}

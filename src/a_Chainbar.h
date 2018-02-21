@@ -29,11 +29,11 @@ public:
 
 	//Set Points
 
-	int ChainbarLeftStandby = 3460;
+	int ChainbarLeftStandby = 3800;
 	int ChainbarLeftGrab = 2500;
 	int ChainbarRightStandby = 8250;
 	int ChainbarRightGrab = 9000;
-	int ChainbarCenter = 5770;
+	int ChainbarCenter = 6000;
 	int ChainbarStandby = 4470;
 
 	void RightPressed();

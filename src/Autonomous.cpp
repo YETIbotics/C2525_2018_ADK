@@ -73,6 +73,11 @@ void Autonomous::RunAutonomous1(int32_t StartMillis)
 	}
 	*/
 	
+
+
+
+//NEWCODE
+	/*
 	if (time < 5000)
 	{
 		Deploy(StartMillis);
@@ -124,6 +129,6 @@ void Autonomous::RunAutonomous1(int32_t StartMillis)
 		chainbar->RightPressed();
 		chainbar->RightPressed();
 	}
-
+*/
 
 }

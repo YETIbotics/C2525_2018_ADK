@@ -52,9 +52,10 @@ public:
 private:
 	Robot *robot;
 
-	int LiftSetPointReceiver = 10424;
-	int LiftSetPointMoGo = 6250;
-	int LiftSetPointStat = 6250;
+	int LiftSetPointReceiver = 9450;
+	int LiftSetPointMoGo = 4250;
+	int LiftSetPointStat = 9000;
+	int LiftSetPointDeploy = 9000;
 
 	int LiftEncoderInt = 2;
 	int LiftEncoderDig = 44;

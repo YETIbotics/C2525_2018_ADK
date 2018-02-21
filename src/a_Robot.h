@@ -41,7 +41,7 @@ public:
 
 	void OpenHats();
 
-
+	bool IsDeployed = false;
 	USB Usb;
 
 

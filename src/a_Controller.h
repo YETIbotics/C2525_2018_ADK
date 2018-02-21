@@ -41,7 +41,7 @@ public:
 private:
 
 	XBOXRECV Xbox;
-	const int joystickMinThresh = 7000;
+	const int joystickMinThresh = 5500;
 	USB dummyXboxPointer;
 
 };

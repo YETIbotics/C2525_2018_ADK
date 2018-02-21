@@ -114,11 +114,11 @@ void Chainbar::Task()
 		}
 	}
 
-	if (millis() - CBTimerRelease > 1000 && millis() - CBTimerRelease < 1200 && millis() > 1300)
+	if (millis() - CBTimerRelease > 1500 && millis() - CBTimerRelease < 1700 && millis() > 1500)
 	{
 		HatRelease();
 	}
-	else if (millis() - CBTimerRelease > 1200 && millis() - CBTimerRelease < 1500 && millis() > 1600)
+	else if (millis() - CBTimerRelease > 2500 && millis() - CBTimerRelease < 2700 && millis() > 1600)
 	{
 		CBState = 4;
 		Swing(ChainbarStandby);
